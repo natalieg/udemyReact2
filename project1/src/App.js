@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person'
+import Person from './Person/Person';
+import styled from 'styled-components';
+
+const StyledButton = styled.button`
+  background-color: ${props => props.alt ? '#a12749' : '#424d1b'};
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+  ${props => props.alt ? 'border-top-left-radius: 15px;' : '  border-top-right-radius: 15px;'}
+  &:hover {
+  background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+  color: black;
+`
 
 class App extends Component {
   state = {
@@ -14,8 +26,8 @@ class App extends Component {
 
   // Changing Name with Input
   nameChangeHandler = (event, id) => {
-    const personIndex = this.state.persons.findIndex(p => {return p.id === id});
-    const person = {...this.state.persons[personIndex]}; // copy of array from state
+    const personIndex = this.state.persons.findIndex(p => { return p.id === id });
+    const person = { ...this.state.persons[personIndex] }; // copy of array from state
     person.name = event.target.value; // get the value of input field
     const persons = [...this.state.persons]; // copy of object from state
     persons[personIndex] = person; //assing the new object with the new name into the array
@@ -51,15 +63,26 @@ class App extends Component {
             />
           })}
         </div>
-      )
+      );
     }
+
+    let classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push('red');
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push('bold');
+    }
+
 
     return (
       <div className='Wrapper'>
         <div className="App">
           <div className='normal'>
             <h1>Hi, I'm a React App</h1>
-            <button onClick={this.togglePersonsHandler}>Toggle Persons</button>
+            <p className={classes.join(' ')}>This is working!</p>
+            <StyledButton alt={this.state.showPersons} onClick={this.togglePersonsHandler}>Toggle Persons</StyledButton>
+            <button className="myButton" alt={this.state.showPersons} onClick={this.togglePersonsHandler}>Toggle Persons</button>
             {persons}
           </div>
         </div>
