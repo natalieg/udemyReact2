@@ -110,8 +110,21 @@
 }
 
 .Bacon {
+  position: relative;
     width: 80%;
     height: 3%;
     background: linear-gradient(#bf3813, #c45e38);
     margin: var(--margin);
+}
+.Bacon::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-repeat: repeat;
+  height: 6px;
+  background-size: 20px 40px;
+  background-image:
+    radial-gradient(circle at 10px -5px, transparent 12px, rgb(255, 255, 255) 13px);
 }
