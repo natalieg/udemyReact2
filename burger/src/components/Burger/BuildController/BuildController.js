@@ -17,11 +17,15 @@ function buildController(props) {
                 <BuildControl
                     key={ctrl.label}
                     label={ctrl.label}
-                    more={()=>props.ingredientAdded(ctrl.type)}
-                    less={()=>props.ingredientRemoved(ctrl.type)}
+                    more={() => props.ingredientAdded(ctrl.type)}
+                    less={() => props.ingredientRemoved(ctrl.type)}
                     disabled={props.disabled[ctrl.type]}
                 />
             ))}
+            <button
+                disabled={!props.purchasable}
+                onClick={props.activateOrder}
+                className={classes.OrderButton}>ORDER NOW</button>
         </div>
     )
 }
