@@ -8,11 +8,15 @@ class FullPost extends Component {
         loadedPost: null,
     }
 
-    componentDidUpdate(){
-        if(this.props.id){
-            if(!this.state.loadedPost ||  (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)){
-                axios.get('/posts/' + this.props.id)
+    componentDidMount(){
+        console.log(this.props)
+        let id = this.props.match.params.id;
+        console.log(id)
+        if(id){
+            if(!this.state.loadedPost ||  (this.state.loadedPost && this.state.loadedPost.id !== id)){
+                axios.get('/posts/' + id)
                 .then(response => {
+                    console.log(response.data)
                     this.setState({loadedPost: response.data})
                 })
             }
