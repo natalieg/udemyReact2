@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Post from '../../../components/Post/Post'
 import './Posts.css'
-import FullPost from '../FullPost/FullPost';
 
 export default class Posts extends Component {
     state = {
@@ -50,7 +49,6 @@ export default class Posts extends Component {
                 <div className="Posts">
                     {posts}
                 </div>
-                <Route path="/:id" exact Component={FullPost}/>
             </div>
         )
     }
